@@ -1,13 +1,15 @@
-﻿using QuickLook.Common.Plugin;
+﻿using Media;
+using QuickLook.Common.Plugin;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace QuickLook.Plugin.VideoMPF
 {
-    //private MediaPlayerUI _vpf;
     public class Plugin : IViewer
     {
+        private MediaPlayerUI _vpf;
         public int Priority => 0;
 
         public void Init()
@@ -26,12 +28,15 @@ namespace QuickLook.Plugin.VideoMPF
 
         public void View(string path, ContextObject context)
         {
-            var viewer = new Label {Content = "I am a Label. I do nothing at all."};
+            //var viewer = new Label {Content = "I am a Label. I do nothing at all."};
+            //context.ViewerContent = viewer;
 
-            context.ViewerContent = viewer;
+            _vpf = new MediaPlayerUI(context);
+            context.ViewerContent = _vpf;
             context.Title = $"{Path.GetFileName(path)}";
+            _vpf.SetSource(path);
 
-            context.IsBusy = false;
+            //context.IsBusy = false;
         }
 
         public void Cleanup()
