@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using Media;
+using QuickLook.Common.Plugin;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using QuickLook.Common.Plugin;
 
-namespace QuickLook.Plugin.HelloWorld
+namespace QuickLook.Plugin.VideoMPF
 {
+    private MediaPlayerUI _vpf;
     public class Plugin : IViewer
     {
         public int Priority => 0;
