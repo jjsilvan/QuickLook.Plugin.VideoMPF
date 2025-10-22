@@ -8,11 +8,11 @@
              d:DesignHeight="300"
              d:DesignWidth="500"
              mc:Ignorable="d">		
-	<Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="White" >
+	<Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="Gray" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="265*"/>
-            <ColumnDefinition Width="69*"/>
-            <ColumnDefinition Width="692*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="335*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -42,11 +42,11 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Slider Name="Seeker" Margin="10,0,10,0" HorizontalAlignment="Center" Grid.Column="1" ToolTip="{Binding ElementName=PlayTime,Path=Text}" Thumb.DragStarted="Seek_Drag_Started"  Thumb.DragCompleted="Seek_Drag_Completed" ValueChanged="Seek_Value_Changed" Width="1000"/>
+                    <Slider Name="Seeker" Margin="10,0,10,0" HorizontalAlignment="Center" Grid.Column="1" ToolTip="{Binding ElementName=PlayTime,Path=Text}" Thumb.DragStarted="Seek_Drag_Started"  Thumb.DragCompleted="Seek_Drag_Completed" ValueChanged="Seek_Value_Changed" Width="500"/>
                 </Grid>
             </StatusBarItem>
         </StatusBar>
-        <StatusBar Grid.Row="3" HorizontalAlignment="Left" Grid.Column="2" Margin="247,0,0,0">
+        <StatusBar Grid.Row="3" HorizontalAlignment="Left" Grid.Column="2" Margin="20,0,0,0">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>

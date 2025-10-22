@@ -53,12 +53,19 @@ namespace QuickLook.Plugin.VideoMPF
 
         public void SetSource (string path) 
 		{
+            IsPlay = false;
             pathFile = path;
-            MyMediaElement.Source = new Uri(pathFile);
-			PlaySong();
-		}
+            _context.IsBusy = false;
+
+            if (File.Exists(pathFile))
+            {
+                PlaySong();
+            }
+        }
         private void Seek_Timer(object sender, EventArgs e)
         {
+            if (sender== null)
+                return;
             if ((MyMediaElement.Source != null) && (MyMediaElement.NaturalDuration.HasTimeSpan) && (!IsSeeked))
             {
                 Seeker.Minimum = 0;
@@ -116,16 +123,10 @@ namespace QuickLook.Plugin.VideoMPF
         }
         public void PlaySong()
         {
-
-            IsPlay = false;
-
-            if (File.Exists(pathFile))
-            {
-                IsPlay = true;
-                PlayOrPause.Content = new Image { Source = new BitmapImage(new Uri(FilePathInfo.Pause)) };
-                PlayOrPause.ToolTip = "Play";
-                MyMediaElement.Play();
-            }
+            IsPlay = true;
+            PlayOrPause.Content = new Image { Source = new BitmapImage(new Uri(FilePathInfo.Pause)) };
+            PlayOrPause.ToolTip = "Play";
+            MyMediaElement.Play();
         }
         public void PauseSong()
         {
@@ -140,13 +141,14 @@ namespace QuickLook.Plugin.VideoMPF
             _context.IsBusy = false;
         }
 
-        protected virtual void Dispose(bool disposing) {
+        public void Dispose(bool disposing) {
             if (!disposedValue) {
                 if (disposing) {
 
 
                 }
                 try {
+                    timer?.Stop();
                     MyMediaElement?.Close();
 
                     Task.Run(() =>

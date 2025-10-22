@@ -1,6 +1,7 @@
 ﻿using QuickLook.Common.Plugin;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace QuickLook.Plugin.VideoMPF
 {
@@ -38,6 +39,8 @@ namespace QuickLook.Plugin.VideoMPF
 
         public void Cleanup()
         {
+            _vpf?.Dispose(true);
+            _vpf = null;
         }
     }
 }
