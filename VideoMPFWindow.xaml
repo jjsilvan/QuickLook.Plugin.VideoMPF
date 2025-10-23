@@ -5,10 +5,8 @@
              xmlns:local="clr-namespace:QuickLook.Plugin.VideoMPF"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Name="viewerPanel"
-             d:DesignHeight="300"
-             d:DesignWidth="500"
-             mc:Ignorable="d">		
-	<Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="Gray" >
+             mc:Ignorable="d" Height="300" Width="500">
+    <Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="Gray" Opacity="0.5" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="35*"/>
@@ -16,14 +14,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="53*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="14*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <MediaElement Grid.Row="1" Name="MyMediaElement"  LoadedBehavior="Manual" Stretch="UniformToFill" ToolTip="MediaPlayer" Grid.ColumnSpan="3" Margin="0,0,0,24" Grid.RowSpan="2" />
-
-        <StatusBar Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="3">
+        <StatusBar Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="562">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
@@ -46,7 +42,7 @@
                 </Grid>
             </StatusBarItem>
         </StatusBar>
-        <StatusBar Grid.Row="3" HorizontalAlignment="Left" Grid.Column="2" Margin="20,0,0,0">
+        <StatusBar Grid.Row="3" HorizontalAlignment="Left" Grid.Column="2" Margin="20,0,0,0" Width="180">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
@@ -83,5 +79,6 @@
             <StatusBarItem Grid.Column="5" HorizontalAlignment="Right">
             </StatusBarItem>
         </StatusBar>
+        <MediaElement Grid.Row="1" x:Name="MyMediaElement" LoadedBehavior="Manual" Stretch="UniformToFill" ToolTip="MediaPlayer" Grid.ColumnSpan="3" Margin="0,0,0,8" Opacity="0.5" />
     </Grid>
 </UserControl>

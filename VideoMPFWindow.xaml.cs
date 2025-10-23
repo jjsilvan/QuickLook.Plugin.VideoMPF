@@ -44,6 +44,11 @@ namespace QuickLook.Plugin.VideoMPF
 
         }
 
+        public event System.Windows.RoutedEventHandler MediaOpened;
+        protected virtual void OnMediaOpened() {
+            PlayOrPause.ToolTip = MyMediaElement.ActualWidth.ToString();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -125,14 +130,14 @@ namespace QuickLook.Plugin.VideoMPF
         {
             IsPlay = true;
             PlayOrPause.Content = new Image { Source = new BitmapImage(new Uri(FilePathInfo.Pause)) };
-            PlayOrPause.ToolTip = "Play";
+            PlayOrPause.ToolTip = "Pause";
             MyMediaElement.Play();
         }
         public void PauseSong()
         {
             IsPlay = false;
             PlayOrPause.Content = new Image { Source = new BitmapImage(new Uri(FilePathInfo.Play)) };
-            PlayOrPause.ToolTip = "Pause";
+            PlayOrPause.ToolTip = "Play";
             MyMediaElement.Pause();
         }
         public void StopSong()
