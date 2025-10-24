@@ -10,7 +10,7 @@ namespace QuickLook.Plugin.VideoMPF
     {
         //private MediaElement _vpf;
         private ViewerPanel _vpf;
-        public int Priority => 0;
+        public int Priority => int.MaxValue;
 
 
         public void Init()
@@ -19,7 +19,7 @@ namespace QuickLook.Plugin.VideoMPF
 
         public bool CanHandle(string path)
         {
-            return !Directory.Exists(path) && path.ToLower().EndsWith(".zzz");
+            return !Directory.Exists(path) && path.ToLower().EndsWith(".mp4");
         }
 
         public void Prepare(string path, ContextObject context) {
@@ -52,12 +52,10 @@ namespace QuickLook.Plugin.VideoMPF
             //_vpf.Play();
             //context.IsBusy = false;
 
-            _vpf = new ViewerPanel(context);
+            _vpf = new ViewerPanel(context, path);
             context.ViewerContent = _vpf;
             context.Title = $"{Path.GetFileName(path)}";
-            _vpf.SetSource(path);
-
-            //context.IsBusy = false;
+            _vpf.PlaySong();
         }
 
         public void Cleanup()

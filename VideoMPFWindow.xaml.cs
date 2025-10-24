@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +26,7 @@ namespace QuickLook.Plugin.VideoMPF
         string pathFile;
         private bool disposedValue;
 
-        public ViewerPanel(ContextObject context)
+        public ViewerPanel(ContextObject context, String path)
         {
             InitializeComponent();
             timer = new DispatcherTimer
@@ -42,11 +43,15 @@ namespace QuickLook.Plugin.VideoMPF
 
             _context = context;
 
+            pathFile = path;
+            _context.IsBusy = false;
+
+            MyMediaElement.Source = new Uri(path);
         }
 
         public event System.Windows.RoutedEventHandler MediaOpened;
         protected virtual void OnMediaOpened() {
-            PlayOrPause.ToolTip = MyMediaElement.ActualWidth.ToString();
+            //PlayOrPause.ToolTip = MyMediaElement.ActualWidth.ToString();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,17 +61,6 @@ namespace QuickLook.Plugin.VideoMPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void SetSource (string path) 
-		{
-            IsPlay = false;
-            pathFile = path;
-            _context.IsBusy = false;
-
-            if (File.Exists(pathFile))
-            {
-                PlaySong();
-            }
-        }
         private void Seek_Timer(object sender, EventArgs e)
         {
             if (sender== null)
@@ -132,6 +126,7 @@ namespace QuickLook.Plugin.VideoMPF
             PlayOrPause.Content = new Image { Source = new BitmapImage(new Uri(FilePathInfo.Pause)) };
             PlayOrPause.ToolTip = "Pause";
             MyMediaElement.Play();
+
         }
         public void PauseSong()
         {

@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Name="viewerPanel"
              mc:Ignorable="d" Height="300" Width="500">
-    <Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="Gray" Opacity="0.5" >
+    <Grid x:Name="MediaPlayer" MouseWheel="Grid_MouseWheel" Background="Gray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="35*"/>
@@ -79,6 +79,6 @@
             <StatusBarItem Grid.Column="5" HorizontalAlignment="Right">
             </StatusBarItem>
         </StatusBar>
-        <MediaElement Grid.Row="1" x:Name="MyMediaElement" LoadedBehavior="Manual" Stretch="UniformToFill" ToolTip="MediaPlayer" Grid.ColumnSpan="3" Margin="0,0,0,8" Opacity="0.5" />
+        <MediaElement Grid.Row="1" x:Name="MyMediaElement" LoadedBehavior="Manual" Stretch="UniformToFill" ToolTip="MediaPlayer" Grid.ColumnSpan="3" Margin="0,0,0,8"/>
     </Grid>
 </UserControl>
